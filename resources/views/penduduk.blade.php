@@ -4,25 +4,27 @@
 
 @section('content')
 <h1>Data Penduduk</h1>
-<table class="table">
-    <thead>
-      <tr>
-       <th>ID</th>
-       <th>Nama</th>
-       <th>Alamat</th>
-       <th>Action</th> 
-    </tr>  
-    </thead>
-    <tbody>
-        <tr>
-          <td>{{ $id }} </td>
-          <td>{{ $nama }} </td>
-          <td>{{ $alamat }} </td>
-          <td>{{ $action }} </td>
-        </tr>
-    </tbody>
-
-</table>
+<table class="table table-hover">
+<thead>
+<tr>
+<th>NIK</th>
+<th>NAMA</th>
+<th>JK</th>
+<th>ALAMAT</th>
+</tr>
+</thead>
+<tbody>
+@foreach($penduduk as $item)
+<tr>
+<td>{{ $item->nik }}</td>
+<td>{{ $item->nama }}</td>
+<td>{{ $item->jk }}</td>
+<td>{{ $item->alamat }}</td>
+</tr>
+ 
+@endforeach
+</tbody>
+</table> 
 
     
 @endsection
