@@ -11,7 +11,9 @@ class Surat extends Model
         'nomor_surat',
         'jenis_surat',
         'tanggal_ajuan',
-        'penduduk_id'];
+        'penduduk_id',
+        'berkas_pendukung'
+    ];
 
 
     public function penduduk(): BelongsTo

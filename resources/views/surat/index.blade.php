@@ -34,6 +34,7 @@
                     <th>Nama Pemohon</th>
                     <th>NIK Pemohon</th>
                     <th>Tanggal Ajuan</th>
+                    <th>Berkas Pendukung</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -60,6 +61,33 @@
                         <td>
                             {{ \Carbon\Carbon::parse($s->tanggal_ajuan)->format('d-m-Y') }}
                         </td>
+
+                        <td>
+    @if($s->berkas_pendukung)
+        @php
+            $ext = strtolower(pathinfo($s->berkas_pendukung, PATHINFO_EXTENSION));
+        @endphp
+
+        @if(in_array($ext, ['jpg', 'png']))
+            <a href="{{ asset('storage/' . $s->berkas_pendukung) }}" target="_blank">
+                <img
+                    src="{{ asset('storage/' . $s->berkas_pendukung) }}"
+                    alt="Berkas Pendukung"
+                    class="rounded shadow-sm border"
+                    style="width: 58px; height: 58px; object-fit: cover;">
+            </a>
+        @elseif($ext === 'pdf')
+            <a href="{{ asset('storage/' . $s->berkas_pendukung) }}" target="_blank" class="btn btn-outline-danger btn-sm">
+                Lihat PDF
+            </a>
+        @else
+            <span class="badge bg-secondary">File tersedia</span>
+        @endif
+    @else
+        <span class="badge bg-warning text-dark">Belum ada berkas</span>
+    @endif
+</td>
+
 
                         <!-- Tambahkan td baru di dalam loop -->
                         <td>
